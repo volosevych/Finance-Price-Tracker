@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Coin from './Coin';
 
+import './style.css';
+
 const App = () => {
     const [coins, setCoins] = useState([]);
     const [search, setSearch ] = useState('');
@@ -24,14 +26,16 @@ const App = () => {
 
     return (
         <div className="coin-app">
-            <div className="coin-search">
-                <h1 className="coin-text">
-                    Search a currency
-                </h1>
+            <div className="coin-container">
+                <div className="coin-search">
+                        <h1 className="coin-text">
+                            Search a currency
+                        </h1>
 
-                <form >
-                    <input onChange={handleChange} type="text" placeholder="Search" className="coin-input"></input>
-                </form>
+                        <form >
+                            <input onChange={handleChange} type="text" placeholder="Search" className="coin-input"></input>
+                        </form>
+                    </div>
             </div>
             {filteredCoins.map(coin => {
                 return (
@@ -40,8 +44,10 @@ const App = () => {
                     name={coin.name}
                     image={coin.image}
                     symbol={coin.symbol}
-                    volume={coin.market_cap}
+                    marketcap={coin.market_cap}
                     price={coin.current_price}
+                    priceChange={coin.price_change_percentage_24h}
+                    volume={coin.total_volume}
                     />
                 )
             })}
